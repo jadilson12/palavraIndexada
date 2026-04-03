@@ -15,4 +15,15 @@
 <meta name="twitter:description" content="{{ partial "utils/page-description.html" . }}">
 {{- with $img -}}
 <meta name="twitter:image" content="{{ . }}">
+{{- $twAlt := "" -}}
+{{- if $.Params.images -}}
+  {{- $twAlt = $.Params.og_image_alt | default "" -}}
+{{- else if $.Params.youtube_id -}}
+  {{- $twAlt = printf "%s — miniatura do vídeo no YouTube" (partial "utils/seo-og-title.html" $) -}}
+{{- else -}}
+  {{- $twAlt = site.Params.og_image_alt | default "" -}}
+{{- end -}}
+{{- with $twAlt -}}
+<meta name="twitter:image:alt" content="{{ . }}">
+{{- end -}}
 {{- end -}}
