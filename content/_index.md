@@ -1,7 +1,7 @@
 ---
 title: Palavra Indexada
-# H1 visível (pode ser mais descritivo que `title`; a marca permanece no início)
-h1: "Palavra Indexada — estudo bíblico e teologia"
+# H1 com menos de 40 caracteres; distinto do title da aba (seo_home_title no hugo.yaml)
+h1: "Palavra Indexada — estudo bíblico"
 description: "Palavra Indexada — estudo bíblico e teológico indexado: temas, artigos, vídeos no YouTube e arquivo completo do blog."
 ---
 
@@ -29,21 +29,21 @@ Na página inicial listamos as publicações mais recentes por período. Para ex
 
 Os vídeos e o conteúdo ministerial são de responsabilidade dos respectivos canais e autores. O Palavra Indexada **não reivindica** a autoria das pregações: o papel do site é **indexar**, **resumir** e **facilitar a busca**, sempre citando a origem. Se você é autor e deseja ajuste ou remoção de algum material, pode entrar em contato pelos canais indicados na página [Sobre](/sobre/).
 
-## Privacidade e leitura
+## Palavra Indexada: privacidade e leitura
 
 O site prioriza leitura confortável em **computador e celular**: tipografia legível, navegação clara e estrutura enxuta para reduzir distrações. O foco é o conteúdo espiritual e educacional, apresentado de forma respeitosa à fé cristã e à diversidade de tradições que se encontram na Palavra.
 
-## Compromisso editorial
+## Palavra Indexada: compromisso editorial
 
 Cada publicação busca equilibrar **fidelidade ao texto bíblico** com linguagem acessível. Quando há interpretações diversas entre estudiosos, preferimos apontar o debate com humildade, em vez de simplificar demais. O objetivo não é substituir a leitura direta das Escrituras nem o aconselhamento pastoral presencial, mas oferecer um **mapa temático** que ajude você a retomar estudos, preparar aulas ou meditar com mais contexto.
 
-## Próximos passos
+## Palavra Indexada: próximos passos
 
 Convidamos você a salvar o endereço, assinar o **[RSS](/index.xml)** se quiser receber novidades no leitor de feeds, e a compartilhar os artigos que forem úteis no seu grupo de estudos ou comunidade. Que esta ferramenta ajude você a “indexar” no coração o que o Espírito Santo revela pela Escritura.
 
 ---
 
-## 2026 - April
+## Palavra Indexada — publicações recentes (2026 · April)
 
 - [A História de Jeremias: Fidelidade e Transformação em um Mundo em Colapso](2026/04/03/a-histria-de-jeremias---fiel-em-um-mundo-em-runas/)
 
