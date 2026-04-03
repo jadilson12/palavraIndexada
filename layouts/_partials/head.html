@@ -17,6 +17,8 @@
     <link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
   {{- end -}}
 
+  {{- partial "utils/hreflang.html" . -}}
+
   {{- partial "opengraph.html" . -}}
   {{- partial "schema.html" . -}}
   {{- partial "twitter_cards.html" . -}}

@@ -6,4 +6,4 @@
 {{- else -}}
   {{- $desc = .Summary | plainify | htmlUnescape | chomp -}}
 {{- end -}}
-{{- truncate 155 "…" $desc -}}
+{{- truncate 128 "…" $desc -}}

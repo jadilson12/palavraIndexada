@@ -1,5 +1,5 @@
 {{- if .IsHome -}}
-  {{- .Site.Title -}}
+  {{- with site.Params.seo_home_title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end -}}
 {{- else -}}
   {{- $page := .Params.seo_title | default .Title -}}
   {{- $suffix := printf " – %s" .Site.Title -}}

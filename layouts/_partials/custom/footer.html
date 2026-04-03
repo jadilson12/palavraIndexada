@@ -1,0 +1,36 @@
+{{- $social := site.Params.social | default dict -}}
+{{- $hasAny := or $social.youtube $social.x $social.linkedin $social.instagram $social.facebook -}}
+{{- if $hasAny -}}
+<nav class="site-social-footer hx:flex hx:flex-wrap hx:items-center hx:justify-center hx:gap-3 hx:pb-6 hx:pt-2" aria-label="Redes sociais">
+  {{- with $social.youtube -}}
+  <a class="site-social-footer__link hx:inline-flex hx:min-h-[44px] hx:min-w-[44px] hx:items-center hx:justify-center hx:rounded-md hx:px-3 hx:text-sm hx:font-medium hx:text-current hx:underline-offset-4 hover:hx:underline" href="{{ . }}" target="_blank" rel="noopener noreferrer me">
+    {{- partial "utils/icon.html" (dict "name" "youtube" "attributes" `height=20 class="hx:opacity-90" aria-hidden="true"`) -}}
+    <span class="hx:sr-only">YouTube</span>
+  </a>
+  {{- end -}}
+  {{- with $social.x -}}
+  <a class="site-social-footer__link hx:inline-flex hx:min-h-[44px] hx:min-w-[44px] hx:items-center hx:justify-center hx:rounded-md hx:px-3 hx:text-sm hx:font-medium hx:text-current hx:underline-offset-4 hover:hx:underline" href="{{ . }}" target="_blank" rel="noopener noreferrer me">
+    {{- partial "utils/icon.html" (dict "name" "x-twitter" "attributes" `height=18 class="hx:opacity-90" aria-hidden="true"`) -}}
+    <span class="hx:sr-only">X (Twitter)</span>
+  </a>
+  {{- end -}}
+  {{- with $social.linkedin -}}
+  <a class="site-social-footer__link hx:inline-flex hx:min-h-[44px] hx:min-w-[44px] hx:items-center hx:justify-center hx:rounded-md hx:px-3 hx:text-sm hx:font-medium hx:text-current hx:underline-offset-4 hover:hx:underline" href="{{ . }}" target="_blank" rel="noopener noreferrer me">
+    {{- partial "utils/icon.html" (dict "name" "linkedin" "attributes" `height=20 class="hx:opacity-90" aria-hidden="true"`) -}}
+    <span class="hx:sr-only">LinkedIn</span>
+  </a>
+  {{- end -}}
+  {{- with $social.instagram -}}
+  <a class="site-social-footer__link hx:inline-flex hx:min-h-[44px] hx:min-w-[44px] hx:items-center hx:justify-center hx:rounded-md hx:px-3 hx:text-sm hx:font-medium hx:text-current hx:underline-offset-4 hover:hx:underline" href="{{ . }}" target="_blank" rel="noopener noreferrer me">
+    {{- partial "utils/icon.html" (dict "name" "instagram" "attributes" `height=20 class="hx:opacity-90" aria-hidden="true"`) -}}
+    <span class="hx:sr-only">Instagram</span>
+  </a>
+  {{- end -}}
+  {{- with $social.facebook -}}
+  <a class="site-social-footer__link hx:inline-flex hx:min-h-[44px] hx:min-w-[44px] hx:items-center hx:justify-center hx:rounded-md hx:px-3 hx:text-sm hx:font-medium hx:text-current hx:underline-offset-4 hover:hx:underline" href="{{ . }}" target="_blank" rel="noopener noreferrer me">
+    {{- partial "utils/icon.html" (dict "name" "facebook" "attributes" `height=20 class="hx:opacity-90" aria-hidden="true"`) -}}
+    <span class="hx:sr-only">Facebook</span>
+  </a>
+  {{- end -}}
+</nav>
+{{- end -}}

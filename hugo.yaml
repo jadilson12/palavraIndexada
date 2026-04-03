@@ -77,6 +77,17 @@ params:
 
   description: "Blog do Jadilson Guedes sobre estudo, organização e compartilhamento do conhecimento bíblico e teológico."
 
+  # Título da home no <title> e Open Graph (~50–60 caracteres para SEO)
+  seo_home_title: "Palavra Indexada — estudo bíblico, teologia e arquivo indexado"
+
+  # Preencha com URLs reais para exibir ícones no rodapé (deixe vazio para ocultar)
+  social:
+    youtube: ""
+    x: ""
+    linkedin: ""
+    instagram: ""
+    facebook: ""
+
   # Imagem padrão Open Graph / Twitter quando a página não define `images` nem `youtube_id`
   images:
     - /favicon.svg

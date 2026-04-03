@@ -1,4 +1,9 @@
-{{- $t := .Params.seo_title | default .Title -}}
+{{- $t := "" -}}
+{{- if .IsHome -}}
+  {{- $t = site.Params.seo_home_title | default .Site.Title -}}
+{{- else -}}
+  {{- $t = .Params.seo_title | default .Title -}}
+{{- end -}}
 {{- if gt (countrunes $t) 65 -}}
   {{- truncate 62 "…" $t -}}
 {{- else -}}
