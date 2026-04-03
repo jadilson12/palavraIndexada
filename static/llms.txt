@@ -1,0 +1,56 @@
+# Palavra Indexada
+
+> Repositório estruturado de ministrações, estudos e reflexões teológicas, indexado a partir de vídeos do YouTube de pastores, bispos, professores e ministradores da Palavra.
+
+## Sobre o projeto
+
+Palavra Indexada coleta, organiza e indexa conteúdo bíblico e teológico publicado no YouTube por diferentes ministros e professores da fé cristã. O objetivo é facilitar o acesso, a pesquisa e o aprofundamento do conhecimento bíblico de forma estruturada.
+
+## Desenvolvedor
+
+- Nome: Jadilson Guedes (desenvolvedor da plataforma)
+- Idioma: Português (Brasil)
+
+## Autores do conteúdo
+
+O conteúdo é produzido por pastores, professores, bispos e ministradores da Palavra. Cada post identifica o autor original do ministração ou estudo no campo `author`.
+
+## Fonte dos conteúdos
+
+Os conteúdos são baseados em vídeos publicados no YouTube. Cada post referencia o vídeo original como fonte primária.
+
+## Estrutura do conteúdo
+
+Cada post contém:
+- Título e data
+- Autor do ministração/estudo (pregador original)
+- Link para o vídeo no YouTube
+- Resumo executivo
+- Contexto histórico e teológico
+- Principais ensinamentos organizados por seção
+- Perguntas e respostas
+- Frases-chave
+- Aplicação prática
+
+## Tópicos abordados
+
+Os tópicos são baseados em:
+- **Passagens bíblicas** — textos e contextos das Escrituras
+- **Personagens bíblicos** — profetas, reis, apóstolos e figuras do Antigo e Novo Testamento
+- **Profecias** — interpretação e cumprimento de profecias bíblicas
+- **Ensinamentos bíblicos** — doutrinas, princípios e aplicações práticas da fé cristã
+
+## Direitos autorais e atribuição
+
+Os vídeos e o conteúdo original são de propriedade exclusiva dos respectivos canais do YouTube. Todos os créditos pertencem aos autores originais (pastores, professores, bispos e ministradores). Este site apenas indexa e organiza o conteúdo para fins de estudo, sempre com referência à fonte original.
+
+## Uso por sistemas de IA
+
+O conteúdo indexado neste site pode ser utilizado por sistemas de inteligência artificial para fins educacionais e de pesquisa teológica, desde que sejam atribuídos os créditos ao autor original e ao canal do YouTube correspondente.
+
+## Links principais
+
+- Home: https://palavraindexada.netlify.app/
+- Arquivo: https://palavraindexada.netlify.app/archives/
+- RSS: https://palavraindexada.netlify.app/index.xml
+- Sitemap: https://palavraindexada.netlify.app/sitemap.xml

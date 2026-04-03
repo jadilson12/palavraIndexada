@@ -1,33 +1,113 @@
 {{- $iso8601 := "2006-01-02T15:04:05-07:00" -}}
 {{- $description := partial "utils/page-description.html" . -}}
+{{- $authorName := .Params.author | default .Site.Params.author.name -}}
+{{- $authorURL := .Site.BaseURL -}}
+
 {{- if .IsPage -}}
+
+{{/* ── BlogPosting / Article ── */}}
+{{- $keywords := slice -}}
+{{- with .Params.keywords }}{{ $keywords = . }}{{ end -}}
+{{- with .Params.topics }}{{ $keywords = $keywords | append . }}{{ end -}}
+{{- with .Params.biblical_books }}{{ $keywords = $keywords | append . }}{{ end -}}
+
 {{- $schema := dict
-  "@context" "https://schema.org"
-  "@type" "BlogPosting"
-  "headline" .Title
-  "description" $description
-  "url" .Permalink
-  "datePublished" (.PublishDate.Format $iso8601)
-  "dateModified" (.Lastmod.Format $iso8601)
-  "author" (dict "@type" "Person" "name" .Site.Params.author.name "url" .Site.BaseURL)
-  "publisher" (dict "@type" "Organization" "name" .Site.Title "url" .Site.BaseURL)
+  "@context"         "https://schema.org"
+  "@type"            "BlogPosting"
+  "headline"         .Title
+  "description"      $description
+  "url"              .Permalink
+  "datePublished"    (.PublishDate.Format $iso8601)
+  "dateModified"     (.Lastmod.Format $iso8601)
+  "inLanguage"       "pt-BR"
+  "author"           (dict
+    "@type"   "Person"
+    "name"    $authorName
+    "url"     $authorURL
+    "sameAs"  (slice
+      "https://github.com/jadilson12"
+      (printf "mailto:%s" .Site.Params.author.email)
+    )
+  )
+  "publisher"        (dict
+    "@type" "Organization"
+    "name"  .Site.Title
+    "url"   .Site.BaseURL
+  )
   "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  "keywords"         ($keywords | uniq)
 -}}
+
+{{- with .Params.summary -}}
+  {{- $schema = merge $schema (dict "abstract" .) -}}
+{{- end -}}
+
+{{- with .Params.biblical_books -}}
+  {{- $about := slice -}}
+  {{- range . -}}
+    {{- $about = $about | append (dict "@type" "Book" "name" .) -}}
+  {{- end -}}
+  {{- $schema = merge $schema (dict "about" $about) -}}
+{{- end -}}
+
+{{- with .Params.duration -}}
+  {{- $schema = merge $schema (dict "timeRequired" (printf "PT%s" .)) -}}
+{{- end -}}
+
+{{- with .Params.source -}}
+  {{- $schema = merge $schema (dict "learningResourceType" .) -}}
+{{- end -}}
+
+{{- $schema = merge $schema (dict
+  "license"          "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  "creditText"       (printf "Conteúdo original de %s. Todos os direitos reservados ao canal do YouTube." $authorName)
+  "copyrightNotice"  (printf "© %s - Todos os créditos ao autor original e ao canal do YouTube." $authorName)
+) -}}
+
 {{- with $.Params.images -}}
   {{- $schema = merge $schema (dict "image" (index . 0 | absURL)) -}}
 {{- end -}}
-{{- with $.Params.tags -}}
-  {{- $schema = merge $schema (dict "keywords" .) -}}
-{{- end -}}
+
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
-{{- else -}}
-{{- $schema := dict
+
+{{/* ── BreadcrumbList (GEO / SEO) ── */}}
+{{- $crumbs := slice (dict "@type" "ListItem" "position" 1 "name" .Site.Title "item" .Site.BaseURL) -}}
+{{- $pos := 2 -}}
+{{- range .Ancestors.Reverse -}}
+  {{- if ne .Kind "home" -}}
+    {{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" $pos "name" .Title "item" .Permalink) -}}
+    {{- $pos = add $pos 1 -}}
+  {{- end -}}
+{{- end -}}
+{{- $crumbs = $crumbs | append (dict "@type" "ListItem" "position" $pos "name" .Title "item" .Permalink) -}}
+{{- $breadcrumb := dict "@context" "https://schema.org" "@type" "BreadcrumbList" "itemListElement" $crumbs -}}
+{{ printf `<script type="application/ld+json">%s</script>` ($breadcrumb | jsonify) | safeHTML }}
+
+{{/* ── Speakable (AEO) ── */}}
+{{- $speakable := dict
   "@context" "https://schema.org"
-  "@type" "WebSite"
-  "name" .Site.Title
+  "@type"    "SpeakableSpecification"
+  "cssSelector" (slice "h1" ".content p" ".content h2")
+-}}
+{{ printf `<script type="application/ld+json">%s</script>` ($speakable | jsonify) | safeHTML }}
+
+{{- else -}}
+
+{{/* ── WebSite ── */}}
+{{- $schema := dict
+  "@context"   "https://schema.org"
+  "@type"      "WebSite"
+  "name"       .Site.Title
   "description" $description
-  "url" .Site.BaseURL
-  "author" (dict "@type" "Person" "name" .Site.Params.author.name)
+  "url"        .Site.BaseURL
+  "inLanguage" "pt-BR"
+  "author"     (dict "@type" "Person" "name" $authorName)
+  "potentialAction" (dict
+    "@type"       "SearchAction"
+    "target"      (dict "@type" "EntryPoint" "urlTemplate" (printf "%ssearch?q={search_term_string}" .Site.BaseURL))
+    "query-input" "required name=search_term_string"
+  )
 -}}
 {{ printf `<script type="application/ld+json">%s</script>` ($schema | jsonify) | safeHTML }}
+
 {{- end -}}

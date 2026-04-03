@@ -4,11 +4,12 @@
 {{- end }}
 {{- $title := $.Get "title" | default "YouTube video player" }}
 
-<div class="embed-container">
+<div style="width:100%;aspect-ratio:16/9;margin:1.5rem 0;">
   <iframe
     src="https://www.youtube.com/embed/{{ $id }}"
     title="{{ $title }}"
     frameborder="0"
+    style="width:100%;height:100%;"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>

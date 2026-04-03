@@ -1,2 +1,45 @@
 {{ partial "schema.html" . }}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+{{/* ── Canonical ── */}}
+<link rel="canonical" href="{{ .Permalink }}">
+
+{{- $description := partial "utils/page-description.html" . -}}
+{{- $title := .Title | default .Site.Title -}}
+{{- $image := "" -}}
+{{- with .Params.images }}{{ $image = index . 0 | absURL }}{{ end -}}
+
+{{/* ── Open Graph (SEO / GEO) ── */}}
+<meta property="og:type"        content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:title"       content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url"         content="{{ .Permalink }}">
+<meta property="og:site_name"   content="{{ .Site.Title }}">
+<meta property="og:locale"      content="pt_BR">
+{{ with $image }}<meta property="og:image" content="{{ . }}">{{ end }}
+{{ if .IsPage }}
+<meta property="article:published_time" content="{{ .PublishDate.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:modified_time"  content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+<meta property="article:author"         content="{{ .Site.Params.author.name }}">
+{{ with .Params.topics }}{{ range . }}<meta property="article:tag" content="{{ . }}">
+{{ end }}{{ end }}
+{{ end }}
+
+{{/* ── Twitter Card (SEO) ── */}}
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{ with $image }}<meta name="twitter:image" content="{{ . }}">{{ end }}
+
+{{/* ── Meta description e keywords (SEO) ── */}}
+<meta name="description" content="{{ $description }}">
+{{ with .Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+<meta name="author" content="{{ .Params.author | default .Site.Params.author.name }}">
+
+{{/* ── Robots ── */}}
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+{{/* ── GEO / AIO: sinais de autoria e atribuição ── */}}
+<meta name="generator" content="Hugo {{ hugo.Version }}">
+<link rel="author" href="/sobre/">
+<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ "/index.xml" | absURL }}">
