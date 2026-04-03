@@ -16,3 +16,100 @@ command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy]
 command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+
+# ── Domínio canônico: sem www (igual ao baseURL do Hugo). Ajuste se preferir www.
+#    No painel Netlify: Site → Domain management → defina o mesmo host como Primary.
+#    Com domínio próprio, descomente o bloco abaixo e troque pelo seu domínio.
+# [[redirects]]
+#   from = "https://www.exemplo.com.br/*"
+#   to = "https://exemplo.com.br/:splat"
+#   status = 301
+#   force = true
+
+[[redirects]]
+from = "https://www.palavraindexada.netlify.app/*"
+to = "https://palavraindexada.netlify.app/:splat"
+status = 301
+force = true
+
+# ── Cache de imagens (Cache-Control com max-age ≈ Expires para ferramentas de SEO)
+#    Arquivos na raiz (ex.: /favicon.svg) e em qualquer pasta do build Hugo.
+[[headers]]
+for = "/*.svg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.png"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.jpg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.jpeg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.gif"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.webp"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.avif"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.ico"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/**/*.svg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/**/*.png"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/**/*.jpg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/**/*.jpeg"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/**/*.gif"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/**/*.webp"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/**/*.avif"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/**/*.ico"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
