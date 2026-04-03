@@ -1,0 +1,23 @@
+services:
+  palavraindexada:
+    build: .
+    ports:
+      - "1313:1313"
+    volumes:
+      - ./content:/app/content
+      - ./layouts:/app/layouts
+      - ./assets:/app/assets
+      - ./scripts:/app/scripts
+      - ./static:/app/static
+      - ./hugo.yaml:/app/hugo.yaml
+      - ./go.mod:/app/go.mod
+      - ./go.sum:/app/go.sum
+    environment:
+      - HUGO_ENV=development
+    command: >
+      sh -c "
+        go run scripts/fix_html_entities.go &&
+        go run scripts/generate_index.go &&
+        hugo server --renderSegments recent --logLevel debug --disableFastRender -p 1313 --bind 0.0.0.0 --watch
+      "
+    restart: unless-stopped
